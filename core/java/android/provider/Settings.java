@@ -1596,11 +1596,23 @@ public final class Settings {
          */
         public static final String LAUNCHER_COLUMN_NUMBER = "launcher_column_number";
         
+        /** KrazyKrivda
+         * Whether Notification Pause is eanbled during media playbck. 
+         * @hide
+         */
+        public static final String NOTIFICATION_PAUSE = "notification_pause";
+
         /**
          * Whether to show the battery level percentage overlayed on the icon.
          * @hide
          */
         public static final String BATTERY_PERCENTAGE_STATUS_ICON = "battery_percentage_status_icon";
+
+        /** KrazyKrivda
+         * Whether Battery Status is Right Aligned or Centered 
+         * @hide
+         */
+        public static final String BATTERY_ALIGNMENT = "battery_alignment";
 
         /**
          * Wysie_Soh
