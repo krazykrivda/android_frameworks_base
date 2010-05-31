@@ -769,6 +769,20 @@ class NotificationManagerService extends INotificationManager.Stub
                     } else {
                         audioStreamType = DEFAULT_STREAM_TYPE;
                     }
+		    // KrazyKrivda Music/Notificaiton MOD
+		    // wanted to lower media volume for notificaiton
+		    // and return to its value after heard
+		    // but is async and doing soon after this caused
+		    // vols to return to normal before any sound was heard
+		    // so for now just set vols equal
+		    int sysVol = audioManager.getStreamVolume(1);
+		    int medVol = audioManager.getStreamVolume(3);
+		    // int adjVol = medVol-3; // not used as of now	
+		    if(audioManager.isMusicActive() && Settings.System.getInt(
+          	        mContext.getContentResolver(), Settings.System.NOTIFICATION_PAUSE, 0) == 0){
+			    audioManager.setStreamVolume(1, medVol, 0); 
+			    audioStreamType = 1;
+		    }  // End addition
                     mSoundNotification = r;
                     // do not play notifications if stream volume is 0
                     // (typically because ringer mode is silent).
@@ -781,6 +795,13 @@ class NotificationManagerService extends INotificationManager.Stub
                             Binder.restoreCallingIdentity(identity);
                         }
                     }
+                    // KrazyKrivda re-adjust volume *see notes above*
+		    /* if(audioManager.isMusicActive() /*&& Settings.System.getInt(
+            	        getContentResolver(), Settings.System.NOTIFICATION_PULSE_BLEND, 0) == 0){
+		            audioManager.setStreamVolume(1, sysVol, 0);
+		            audioManager.setStreamVolume(3, medVol, 0);			
+		    }  //End mod... readjusting is done before sound is played	
+			due to async so removed until proper delay is used	*/
                 }
 
                 // vibrate
