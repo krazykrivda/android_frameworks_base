@@ -122,12 +122,23 @@ class StatusBarIcon {
                 ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(dm);
         
                 if (DisplayMetrics.DENSITY_HIGH == dm.densityDpi) {               
-                    mNumberView.setLayoutParams(
-                        new FrameLayout.LayoutParams(
-                            FrameLayout.LayoutParams.WRAP_CONTENT,
-                            FrameLayout.LayoutParams.WRAP_CONTENT,
-                            Gravity.RIGHT | Gravity.CENTER_VERTICAL));
-
+                    // KrazyKrivda Battery Alignment Mod
+                    if (Settings.System.getInt(
+          	        mContext.getContentResolver(), Settings.System.BATTERY_ALIGNMENT, 0) == 0){
+                        mNumberView.setLayoutParams(
+                            new FrameLayout.LayoutParams(
+                                FrameLayout.LayoutParams.WRAP_CONTENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT,
+                                Gravity.CENTER | Gravity.CENTER_VERTICAL));
+                    } 
+                    else {
+                        mNumberView.setLayoutParams(
+                            new FrameLayout.LayoutParams(
+                                FrameLayout.LayoutParams.WRAP_CONTENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT,
+                                Gravity.RIGHT | Gravity.CENTER_VERTICAL));
+                    }
+                    // End Mod
                     mNumberView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
                 }
                 else {
