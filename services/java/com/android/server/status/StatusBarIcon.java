@@ -124,7 +124,7 @@ class StatusBarIcon {
                 if (DisplayMetrics.DENSITY_HIGH == dm.densityDpi) {               
                     // KrazyKrivda Battery Alignment Mod
                     if (Settings.System.getInt(
-          	        mContext.getContentResolver(), Settings.System.BATTERY_ALIGNMENT, 0) == 0){
+          	        mContext.getContentResolver(), Settings.System.BATTERY_ALIGNMENT, 0) != 0){
                         mNumberView.setLayoutParams(
                             new FrameLayout.LayoutParams(
                                 FrameLayout.LayoutParams.WRAP_CONTENT,
